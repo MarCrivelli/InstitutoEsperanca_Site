@@ -53,7 +53,7 @@ export default function SaudeUnica() {
             </p>
           </div>
           <img
-            src="/pagSaudeUnica/arvore.png"
+            src={`${import.meta.env.BASE_URL}pagSaudeUnica/arvore.png`}
           />
         </section>
 

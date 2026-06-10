@@ -12,7 +12,7 @@ export default function Card2() {
       try {
         setLoading(true);
         /* Busca todos os animais */
-        const resposta = await fetch("http://localhost:3003/animais");
+        const resposta = await fetch(`${import.meta.env.VITE_API_URL}/animais`);
         /* Verifica se há algo de errado */
         if (!resposta.ok) {
           throw new Error("Erro ao buscar animais");

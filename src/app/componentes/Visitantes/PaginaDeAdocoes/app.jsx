@@ -119,7 +119,7 @@ export default function QueroAdotar() {
                     {!mostrandoDescricao ? (
                       <>
                         <img
-                          src={`http://localhost:3003/uploads/${animal.imagemEntrada}`}
+                          src={`${import.meta.env.VITE_API_URL}/uploads/${animal.imagemEntrada}`}
                           alt={animal.nome}
                           draggable={false}
                           loading="lazy"
@@ -219,7 +219,7 @@ export default function QueroAdotar() {
         <section className={`${styles.secao} ${styles.conteudo}`}>
           <div className={styles.bloco}>
             <div className={styles.cardInformativo}>
-              <img src="/pagAdocao/avaliacao.png"></img>
+              <img src={`${import.meta.env.BASE_URL}pagAdocao/avaliacao.png`}></img>
               <h2>Avaliação Comportamental</h2>
               <p>
                 Um critério muito importante é a avaliação de como o futuro
@@ -230,7 +230,7 @@ export default function QueroAdotar() {
           </div>
           <div className={styles.bloco}>
             <div className={styles.cardInformativo}>
-              <img src="/pagAdocao/ficha.png"></img>
+              <img src={`${import.meta.env.BASE_URL}pagAdocao/ficha.png`}></img>
               <h2>Ficha Limpa</h2>
               <p>
                 Estamos sempre atentos a denúncias de maus-tratos e podemos
@@ -241,7 +241,7 @@ export default function QueroAdotar() {
           </div>
           <div className={styles.bloco}>
             <div className={styles.cardInformativo}>
-              <img src="/pagAdocao/lar.png"></img>
+              <img src={`${import.meta.env.BASE_URL}pagAdocao/lar.png`}></img>
               <h2>Lar adequado</h2>
               <p>
                 Antes de adotar um animal, é preciso ter ciência de que é
@@ -255,7 +255,7 @@ export default function QueroAdotar() {
           </div>
           <div className={styles.bloco}>
             <div className={styles.cardInformativo}>
-              <img src="/pagAdocao/rotina.png"></img>
+              <img src={`${import.meta.env.BASE_URL}pagAdocao/rotina.png`}></img>
               <h2>Rotina Adequada</h2>
               <p>
                 Os animais domésticos precisam de atenção e cuidados diários
@@ -267,7 +267,7 @@ export default function QueroAdotar() {
           </div>
           <div className={styles.bloco}>
             <div className={styles.cardInformativo}>
-              <img src="/pagAdocao/financeiro.png"></img>
+              <img src="pagAdocao/financeiro.png"></img>
               <h2>Financeiro</h2>
               <p>
                 Cuidar de um animal exige um certo gasto para mantê-los, sendo

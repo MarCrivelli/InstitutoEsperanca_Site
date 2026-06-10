@@ -220,18 +220,6 @@ routes.put('/avisos/:id', verificarToken, apenasAdministrador, avisoController.a
 routes.delete('/avisos/:id', verificarToken, apenasAdministrador, avisoController.deletarAviso);
 
 // ============================================================================
-// MIDDLEWARE DE TRATAMENTO DE ROTAS NÃO ENCONTRADAS
-// ============================================================================
-routes.use('*', (req, res) => {
-  console.log(`❌ Rota não encontrada: ${req.method} ${req.originalUrl}`);
-  res.status(404).json({
-    erro: true,
-    mensagem: `Rota ${req.method} ${req.originalUrl} não encontrada`,
-    timestamp: new Date().toISOString()
-  });
-});
-
-// ============================================================================
 // ROTAS DE DOCUMENTOS
 // ============================================================================
 
@@ -259,5 +247,14 @@ routes.delete(
   administradorOuSub,
   documentosController.deletarDocumento
 );
+
+routes.use('*', (req, res) => {
+  console.log(`❌ Rota não encontrada: ${req.method} ${req.originalUrl}`);
+  res.status(404).json({
+    erro: true,
+    mensagem: `Rota ${req.method} ${req.originalUrl} não encontrada`,
+    timestamp: new Date().toISOString()
+  });
+});
 
 module.exports = routes;

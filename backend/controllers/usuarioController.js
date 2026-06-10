@@ -8,8 +8,8 @@ require("dotenv").config();
 // ═══════════════════════════════════════════════════════════════
 const ADMIN_FIXO = {
   nome: "",
-  email: "acessoAdministrador.@log",
-  senha: "#instEsperanca_Admin123",
+  email: "",
+  senha: "",
   nivelDeAcesso: "administrador",
   telefone: "",
   receberEmailEventos: false,

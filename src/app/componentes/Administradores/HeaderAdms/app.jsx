@@ -58,7 +58,7 @@ export default function HeaderAdms() {
           title="Instituto Esperança"
         >
           <img
-            src="/logos/logoBranca.png"
+            src={`${import.meta.env.BASE_URL}logos/logoBranca.png`}
             className={styles.logo}
             alt="Logo do Instituto Esperança"
           />
@@ -92,7 +92,7 @@ export default function HeaderAdms() {
                 }
               >
                 <img
-                  src={usuarioLogado?.foto || "/user.png"}
+                  src={usuarioLogado?.foto || `${import.meta.env.BASE_URL}user.png`}
                   alt="perfil"
                   className={styles.iconeUsuario}
                 />
@@ -139,7 +139,7 @@ export default function HeaderAdms() {
                 className={styles.linkMenuMobile}
                 onClick={() => setMenuAberto(false)}
               >
-                <img src="/headerAdms/pata.png" alt="" />
+                <img src={`${import.meta.env.BASE_URL}headerAdms/pata.png`} alt="" />
                 Fichas de animais
               </Link>
             </li>
@@ -149,7 +149,7 @@ export default function HeaderAdms() {
                 className={styles.linkMenuMobile}
                 onClick={() => setMenuAberto(false)}
               >
-                <img src="/headerAdms/post.png" alt="" />
+                <img src={`${import.meta.env.BASE_URL}headerAdms/post.png`} alt="" />
                 Postagens
               </Link>
             </li>
@@ -159,7 +159,7 @@ export default function HeaderAdms() {
                 className={styles.linkMenuMobile}
                 onClick={() => setMenuAberto(false)}
               >
-                <img src="/headerAdms/engrenagem.png" alt="" />
+                <img src={`${import.meta.env.BASE_URL}headerAdms/engrenagem.png`} alt="" />
                 Configurações
               </Link>
             </li>

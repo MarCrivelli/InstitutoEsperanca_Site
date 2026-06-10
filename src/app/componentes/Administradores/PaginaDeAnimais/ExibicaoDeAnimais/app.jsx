@@ -49,7 +49,7 @@ export default function ExibicaoDeAnimais({
       <div className={styles.mensagemNenhumAnimal}>
         <img
           className={styles.imagemPreCadastro}
-          src="/pagFichasDAnimais/animaisConfusos.png"
+          src={`${import.meta.env.BASE_URL}pagFichasDAnimais/animaisConfusos.png`}
           alt="Ícone de animais confusos"
         />
         <h2 className={styles.textoPreCadastro}>Carregando animais...</h2>
@@ -63,7 +63,7 @@ export default function ExibicaoDeAnimais({
         <div className={styles.mensagemNenhumAnimal}>
           <img
             className={styles.imagemPreCadastro}
-            src="/pagFichasDAnimais/animaisConfusos.png"
+            src={`${import.meta.env.BASE_URL}pagFichasDAnimais/animaisConfusos.png`}
             alt="Ícone de animais confusos"
           />
           <h2 className={styles.textoPreCadastro}>
@@ -80,8 +80,8 @@ export default function ExibicaoDeAnimais({
                 className={styles.imagemAnimais}
                 src={
                   animal.imagemEntrada
-                    ? `http://localhost:3003/uploads/${animal.imagemEntrada}`
-                    : "/pagFichasDAnimais/imagemTeste.jpg"
+                    ? `${import.meta.env.VITE_API_URL}/uploads/${animal.imagemEntrada}`
+                    : `${import.meta.env.BASE_URL}pagFichasDAnimais/imagemTeste.jpg`
                 }
                 alt="Imagem do animal"
               />

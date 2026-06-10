@@ -81,7 +81,7 @@ export default function BotaoParaPaginaDeAdms() {
         }`}
         onClick={handleClick}
       >
-        <img src="/logos/logoBranca.png" alt="Ícone de Página Inicial" />
+        <img src={`${import.meta.env.BASE_URL}logos/logoBranca.png`} alt="Ícone de Página Inicial" />
       </div>
     </div>
   );

@@ -59,7 +59,7 @@ export default function VerMais() {
   useEffect(() => {
     const buscarDadosDoAnimal = async () => {
       try {
-        const resposta = await fetch(`http://localhost:3003/animais/${id}`);
+        const resposta = await fetch(`${import.meta.env.VITE_API_URL}/animais/${id}`);
         const dados = await resposta.json();
 
         console.log("=== DADOS CARREGADOS DO BANCO ===");
@@ -219,7 +219,7 @@ export default function VerMais() {
         setSalvandoDados(true);
         
         const token = localStorage.getItem('token');
-        const endpoint = `http://localhost:3003/animais/${id}/imagem-saida`;
+        const endpoint = `${import.meta.env.VITE_API_URL}/animais/${id}/imagem-saida`;
         const dadosFormulario = new FormData();
         dadosFormulario.append(tipoCampo, arquivo);
 
@@ -271,7 +271,7 @@ export default function VerMais() {
       setSalvandoDados(true);
 
       const resposta = await fetch(
-        `http://localhost:3003/animais/${id}/descricao-saida`,
+        `${import.meta.env.VITE_API_URL}/animais/${id}/descricao-saida`,
         {
           method: "PUT",
           headers: {
@@ -303,8 +303,8 @@ export default function VerMais() {
   const uploadImagemParaServidor = async (imagemPendente, tipoCampo) => {
     const endpoint =
       tipoCampo === "imagemSaida"
-        ? `http://localhost:3003/animais/${id}/imagem-saida`
-        : `http://localhost:3003/animais/${id}/imagem-entrada`;
+        ? `${import.meta.env.VITE_API_URL}/animais/${id}/imagem-saida`
+        : `${import.meta.env.VITE_API_URL}/animais/${id}/imagem-entrada`;
 
     const dadosFormulario = new FormData();
     dadosFormulario.append(tipoCampo, imagemPendente.arquivo);
@@ -351,7 +351,7 @@ export default function VerMais() {
       // Salvar dados textuais
       const dadosParaEnviar = { ...dadosEditados };
 
-      const resposta = await fetch(`http://localhost:3003/animais/${id}`, {
+      const resposta = await fetch(`${import.meta.env.VITE_API_URL}/animais/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -446,7 +446,7 @@ export default function VerMais() {
       return imagemEntradaPendente.url;
     }
     return dadosOriginais.imagemEntrada
-      ? `http://localhost:3003/uploads/${dadosOriginais.imagemEntrada}`
+      ? `${import.meta.env.VITE_API_URL}/uploads/${dadosOriginais.imagemEntrada}`
       : "/pagFichasDAnimais/imagemTeste.jpg";
   };
 
@@ -456,7 +456,7 @@ export default function VerMais() {
       return imagemSaidaPendente.url;
     }
     return dadosOriginais.imagemSaida
-      ? `http://localhost:3003/uploads/${dadosOriginais.imagemSaida}`
+      ? `${import.meta.env.VITE_API_URL}/uploads/${dadosOriginais.imagemSaida}`
       : null;
   };
 
@@ -585,7 +585,7 @@ export default function VerMais() {
                     className={`${styles.botaoTrocarImagem} ${!modoEdicao ? styles.desativado : ''}`}
                     style={{ cursor: !modoEdicao ? 'not-allowed' : 'pointer' }}
                   >
-                    <img src="/pagVerMais/galeria.png" alt="Trocar imagem" />
+                    <img src={`${import.meta.env.BASE_URL}pagVerMais/galeria.png`} alt="Trocar imagem" />
                     <input
                       type="file"
                       onChange={(e) =>
@@ -604,7 +604,7 @@ export default function VerMais() {
                     }}
                   >
                     <img
-                      src="/pagVerMais/olho.png"
+                      src={`${import.meta.env.BASE_URL}pagVerMais/olho.png`}
                       alt="Ver imagem ampliada"
                     />
                   </button>
@@ -619,7 +619,7 @@ export default function VerMais() {
                 backgroundImage: obterUrlImagemSaida() 
                   ? `url(${obterUrlImagemSaida()})`
                   : dadosOriginais.imagemEntrada
-                  ? `url(http://localhost:3003/uploads/${dadosOriginais.imagemEntrada})`
+                  ? `url(${import.meta.env.VITE_API_URL}/uploads/${dadosOriginais.imagemEntrada})`
                   : "none",
               }}
             >
@@ -636,7 +636,7 @@ export default function VerMais() {
                       style={{ cursor: !modoEdicao ? 'not-allowed' : 'pointer' }}
                     >
                       <img
-                        src="/pagVerMais/galeria.png"
+                        src={`${import.meta.env.BASE_URL}pagVerMais/galeria.png`}
                         alt="Trocar imagem"
                       />
                       <input
@@ -660,7 +660,7 @@ export default function VerMais() {
                       }}
                     >
                       <img
-                        src="/pagVerMais/olho.png"
+                        src="pagVerMais/olho.png"
                         alt="Ver imagem ampliada"
                       />
                     </button>
@@ -669,7 +669,7 @@ export default function VerMais() {
               ) : (
                 <div className={styles.semImagemDeSaida}>
                   <div className={styles.alinharImagemQuebrada}>
-                    <img src="/pagVerMais/semImagem.png" alt="Sem imagem" />
+                    <img src={`${import.meta.env.BASE_URL}pagVerMais/semImagem.png`} alt="Sem imagem" />
                   </div>
                   <h1>Nenhuma imagem de saída foi cadastrada</h1>
                   <p>

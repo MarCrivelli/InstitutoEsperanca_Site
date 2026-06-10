@@ -47,7 +47,7 @@ function RolarPCima() {
     >
       <img 
         className={styles.imagemBotao} 
-        src="/SetaPCima.png" 
+        src={`${import.meta.env.BASE_URL}SetaPCima.png`} 
         alt="Ícone de seta para cima" 
       />
     </button>

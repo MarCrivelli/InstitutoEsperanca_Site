@@ -97,7 +97,7 @@ export default function CarrosselDoadoresVisitantes({ ehMobile }) {
         <div key={doador.id} className={styles.renderizacaoSlideDoadores}>
           <div className={styles.bordaImagem}>
             <img
-              src={`http://localhost:3003/uploads/${doador.imagem}`}
+              src={`${import.meta.env.VITE_API_URL}/uploads/${doador.imagem}`}
               alt={doador.nome}
               className={styles.fotoDoador}
               onError={(e) => {

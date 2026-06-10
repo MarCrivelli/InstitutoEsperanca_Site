@@ -32,7 +32,7 @@ export default function ComoDoar() {
               Ao escanear, você poderá fazer uma doação para o número PIX do
               Instituto Esperança. Qualquer valor é bem-vindo!
             </h2>
-            <img src="/QRCodeDoacao/QRCodeTeste.png"></img>
+            <img src="QRCodeDoacao/QRCodeTeste.png"></img>
 
             <button
               onClick={copiarQRCode}
@@ -63,7 +63,7 @@ export default function ComoDoar() {
             </h2>
             <div className={styles.alinharContainerIcones}>
               <div className={styles.containerIcones}>
-                <img src="/pagDoacao/caminha.png"></img>
+                <img src="pagDoacao/caminha.png"></img>
                 <p>
                   <strong>Caminha de animais:</strong> Todos os nossos animais
                   dormem em camas para animais com tamanhos de acordo com o
@@ -74,7 +74,7 @@ export default function ComoDoar() {
                 </p>
               </div>
               <div className={styles.containerIcones}>
-                <img src="/pagDoacao/coleira.png"></img>
+                <img src="pagDoacao/coleira.png"></img>
                 <p>
                   <strong>Coleira:</strong> Coleiras são muito úteis no momento
                   de colocar o cone veterinário, pois elas dão sustentação ao
@@ -83,7 +83,7 @@ export default function ComoDoar() {
                 </p>
               </div>
               <div className={styles.containerIcones}>
-                <img src="/pagDoacao/cone.png"></img>
+                <img src="pagDoacao/cone.png"></img>
                 <p>
                   <strong>Cone Veterinário:</strong> Eventualmente nós
                   resgatamos animais doentes, que por sua vez, precisam do cone
@@ -93,7 +93,7 @@ export default function ComoDoar() {
                 </p>
               </div>
               <div className={styles.containerIcones}>
-                <img src="/pagDoacao/racao.png"></img>
+                <img src="pagDoacao/racao.png"></img>
                 <p>
                   <strong>Ração:</strong> Assim como nós, os animais também
                   precisam se alimentar e com tantos animais, a nossa demanda de

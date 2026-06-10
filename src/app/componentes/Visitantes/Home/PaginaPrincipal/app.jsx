@@ -34,8 +34,9 @@ export default function PaginaInicialVisitantes() {
       <div className={styles.imagemDeFundo}>
         <Header tipo="padrao" />
         <div className={styles.logoPreLogin}>
+
           <img
-            src="logos/logoBranca.png"
+            src={`${import.meta.env.BASE_URL}logos/logoBranca.png`}
             width={800}
             height={400}
             alt="Logo Instituto Esperança"
@@ -49,7 +50,7 @@ export default function PaginaInicialVisitantes() {
 
       <div className={styles.alinharCards}>
         <div className={`${styles.card} ${styles.card1}`}>
-          <img src="/mainVisitantes/cachorroTriste.png" alt="Cachorro triste" />
+          <img src={`${import.meta.env.BASE_URL}mainVisitantes/cachorroTriste.png`} alt="Cachorro triste" />
           <div className={styles.descricaoCard}>
             <h1>Precisa de ajuda para realizar uma denúncia?</h1>
             <p>
@@ -65,7 +66,7 @@ export default function PaginaInicialVisitantes() {
         </div>
 
         <div className={`${styles.card} ${styles.card2}`}>
-          <img src="/mainVisitantes/dinheiro.png" alt="Dinheiro" />
+          <img src={`${import.meta.env.BASE_URL}mainVisitantes/dinheiro.png`} alt="Dinheiro" />
           <div className={styles.descricaoCard}>
             <h1>Quer saber como contribuir para a nossa causa?</h1>
             <p>
@@ -80,7 +81,7 @@ export default function PaginaInicialVisitantes() {
         </div>
 
         <div className={`${styles.card} ${styles.card3}`}>
-          <img src="/mainVisitantes/adocao.png" alt="Adoção" />
+          <img src={`${import.meta.env.BASE_URL}mainVisitantes/adocao.png`} alt="Adoção" />
           <div className={styles.descricaoCard}>
             <h1>Tem interesse em adotar um animalzinho?</h1>
             <p>
@@ -96,7 +97,7 @@ export default function PaginaInicialVisitantes() {
         </div>
 
         <div className={`${styles.card} ${styles.card4}`}>
-          <img src="/mainVisitantes/colaborador.png" alt="Colaborador" />
+          <img src={`${import.meta.env.BASE_URL}mainVisitantes/colaborador.png`} alt="Colaborador" />
           <div className={styles.descricaoCard}>
             <h1>Gostaria de se juntar a nossa equipe de voluntários?</h1>
             <p>

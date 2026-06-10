@@ -44,7 +44,7 @@ export default function BotaoPagInicial() {
         }`}
         onClick={handleClick}
       >
-        <img src="/homeAdms/home.png" alt="Ícone de Página Inicial" />
+        <img src="homeAdms/home.png" alt="Ícone de Página Inicial" />
       </div>
     </div>
   );

@@ -23,7 +23,7 @@ export default function carregarAnimais(opcoes = {}) {
       setCarregando(true);
       setErro(null);
 
-      const resposta = await fetch("http://localhost:3003/animais");
+      const resposta = await fetch(`${import.meta.env.VITE_API_URL}/animais`);
       if (!resposta.ok) {
         throw new Error(`Erro ao buscar animais: ${resposta.status}`);
       }

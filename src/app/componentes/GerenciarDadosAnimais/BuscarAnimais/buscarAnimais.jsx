@@ -1,6 +1,6 @@
 const ENDPOINTS = [
-  "http://localhost:3003/animais",
-  "http://localhost:3003/listar/animais",
+  `${import.meta.env.VITE_API_URL}/animais`,
+  `${import.meta.env.VITE_API_URL}/listar/animais`,
 ];
 
 export async function buscarAnimaisBackend() {

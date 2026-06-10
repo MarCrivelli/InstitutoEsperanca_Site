@@ -10,7 +10,7 @@ import Card2 from "../Card2/app";
 import Card3 from "../Card3/app";
 
 // Configuração da API - ajuste conforme seu ambiente
-const API_BASE_URL = "http://localhost:3003"; // Porta do seu backend
+const API_BASE_URL = import.meta.env.VITE_API_URL; 
 
 export default function PaginaInicialAdministradores() {
   const [lembretes, setLembretes] = useState([]);

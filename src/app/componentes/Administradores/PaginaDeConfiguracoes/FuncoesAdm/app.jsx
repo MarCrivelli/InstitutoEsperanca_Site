@@ -40,7 +40,7 @@ export default function FuncoesDeAdministrador() {
       setCarregando(true);
       const token = localStorage.getItem("token");
       
-      const resposta = await fetch("http://localhost:3003/usuarios", {
+      const resposta = await fetch(`${import.meta.env.VITE_API_URL}/usuarios`, {
         method: "GET",
         headers: {
           "Authorization": `Bearer ${token}`,
@@ -90,7 +90,7 @@ export default function FuncoesDeAdministrador() {
       setCarregando(true);
       const token = localStorage.getItem("token");
 
-      const resposta = await fetch(`http://localhost:3003/usuarios/${usuarioSelecionadoExcluir.value}`, {
+      const resposta = await fetch(`${import.meta.env.VITE_API_URL}/usuarios/${usuarioSelecionadoExcluir.value}`, {
         method: "DELETE",
         headers: {
           "Authorization": `Bearer ${token}`,
@@ -142,7 +142,7 @@ export default function FuncoesDeAdministrador() {
         novoNivel: novoNivelAcesso.value
       });
 
-      const resposta = await fetch(`http://localhost:3003/usuarios/${usuarioSelecionadoAlterar.value}`, {
+      const resposta = await fetch(`${import.meta.env.VITE_API_URL}/usuarios/${usuarioSelecionadoAlterar.value}`, {
         method: "PUT",
         headers: {
           "Authorization": `Bearer ${token}`,
@@ -196,7 +196,7 @@ export default function FuncoesDeAdministrador() {
     try {
       setCarregando(true);
 
-      const resposta = await fetch("http://localhost:3003/cadastro", {
+      const resposta = await fetch(`${import.meta.env.VITE_API_URL}/cadastro`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

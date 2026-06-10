@@ -62,7 +62,7 @@ export default function CarrosselAnimais() {
 
       // Carregar animais disponíveis para seleção
       const responseAnimais = await fetch(
-        "http://localhost:3003/carrossel/animais/selecao",
+        `${import.meta.env.VITE_API_URL}/carrossel/animais/selecao`,
       );
 
       if (!responseAnimais.ok) {
@@ -74,7 +74,7 @@ export default function CarrosselAnimais() {
 
       // Carregar animais já no carrossel
       const responseCarrossel = await fetch(
-        "http://localhost:3003/carrossel/animais",
+        `${import.meta.env.VITE_API_URL}/carrossel/animais`,
       );
 
       if (!responseCarrossel.ok) {
@@ -103,51 +103,21 @@ export default function CarrosselAnimais() {
         return;
       }
 
-      // ANÁLISE DETALHADA DOS DADOS - Vamos ver EXATAMENTE o que temos
-      console.log("🔬 ANÁLISE COMPLETA DOS DADOS:");
-      console.log("Total de animais recebidos:", dataAnimais.length);
-
-      dataAnimais.forEach((animal, index) => {
-        console.log(`\n🐾 ======= ANIMAL ${index} =======`);
-        console.log("Objeto completo:", animal);
-        console.log("Tipo do objeto:", typeof animal);
-        console.log("Chaves disponíveis:", Object.keys(animal || {}));
-
-        if (animal) {
-          console.log("📋 TODOS OS CAMPOS DO ANIMAL:");
-          Object.entries(animal).forEach(([key, value]) => {
-            console.log(`  ${key}: ${value} (tipo: ${typeof value})`);
-          });
-        }
-        console.log(`======= FIM ANIMAL ${index} =======\n`);
-      });
-
       // Filtrar animais disponíveis - TEMPORARIAMENTE MAIS PERMISSIVO PARA TESTE
       const animaisDisponiveis = dataAnimais.filter((animal, index) => {
-        console.log(`\n🔍 ===== VALIDAÇÃO ANIMAL ${index} =====`);
-
-        // Verificações básicas
         if (!animal || !animal.id) {
           console.log(`❌ Animal ${index}: sem ID ou objeto nulo`);
           return false;
         }
 
-        // Verificar se não está no carrossel
         const naoEstaNoCarrossel = !animaisNoCarrossel.includes(animal.id);
-        console.log(`🎠 Não está no carrossel: ${naoEstaNoCarrossel}`);
 
-        // TEMPORÁRIO: vamos aceitar animais só com nome para ver se aparecem no Select
+        const temNome = Boolean(animal.nome || animal.name);
+
         const isValidTemporario = temNome && naoEstaNoCarrossel;
-
-        console.log(
-          `🧪 TESTE TEMPORÁRIO - Animal ${animal.id} válido: ${isValidTemporario}`,
-        );
-        console.log(`===== FIM VALIDAÇÃO ANIMAL ${index} =====\n`);
 
         return isValidTemporario;
       });
-
-      console.log("🎯 Animais disponíveis filtrados:", animaisDisponiveis);
 
       // Mapear para formato do Select
       const animaisParaSelect = animaisDisponiveis.map((animal) => ({
@@ -156,11 +126,8 @@ export default function CarrosselAnimais() {
         originalData: animal,
       }));
 
-      console.log("🎯 Animais mapeados para Select:", animaisParaSelect);
-
       setAnimais(animaisParaSelect);
     } catch (error) {
-      console.error("❌ Falha ao carregar animais:", error);
       setErro("Falha ao carregar animais. Tente novamente.");
     } finally {
       setCarregando(false);
@@ -170,7 +137,9 @@ export default function CarrosselAnimais() {
   const carregarAnimaisCarrossel = async () => {
     try {
       setCarregandoCarrossel(true);
-      const response = await fetch("http://localhost:3003/carrossel/animais");
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/carrossel/animais`,
+      );
 
       if (!response.ok) throw new Error(`Erro HTTP: ${response.status}`);
 
@@ -208,7 +177,6 @@ export default function CarrosselAnimais() {
 
   const handleSelecionarAnimal = async (selectedOption) => {
     setErro("");
-    console.log("🎯 Animal selecionado:", selectedOption);
 
     if (!selectedOption) {
       setAnimalSelecionado(null);
@@ -218,12 +186,11 @@ export default function CarrosselAnimais() {
 
     try {
       const response = await fetch(
-        `http://localhost:3003/animais/${selectedOption.value}`,
+        `${import.meta.env.VITE_API_URL}/animais/${selectedOption.value}`,
       );
       if (!response.ok) throw new Error(`Erro HTTP: ${response.status}`);
 
       const data = await response.json();
-      console.log("📦 Dados completos do animal selecionado:", data);
       setAnimalSelecionado(data);
       setMostrarSaidaFormulario(false);
     } catch (error) {
@@ -239,16 +206,19 @@ export default function CarrosselAnimais() {
     }
 
     try {
-      const response = await fetch("http://localhost:3003/carrossel/animais", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/carrossel/animais`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            animalId: animalSelecionado.id,
+            descricaoSaida: animalSelecionado.descricaoSaida,
+          }),
         },
-        body: JSON.stringify({
-          animalId: animalSelecionado.id,
-          descricaoSaida: animalSelecionado.descricaoSaida,
-        }),
-      });
+      );
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
@@ -283,7 +253,7 @@ export default function CarrosselAnimais() {
       setRemovendoAnimal(slideId);
 
       const response = await fetch(
-        `http://localhost:3003/carrossel/animais/${slideId}`,
+        `${import.meta.env.VITE_API_URL}/carrossel/animais/${slideId}`,
         {
           method: "DELETE",
           headers: {
@@ -439,8 +409,8 @@ export default function CarrosselAnimais() {
   ) => {
     const endpoint =
       tipoCampo === "imagemSaida"
-        ? `http://localhost:3003/animais/${animalId}/imagem-saida`
-        : `http://localhost:3003/animais/${animalId}/imagem-entrada`;
+        ? `${import.meta.env.VITE_API_URL}/animais/${animalId}/imagem-saida`
+        : `${import.meta.env.VITE_API_URL}/animais/${animalId}/imagem-entrada`;
 
     const dadosFormulario = new FormData();
     dadosFormulario.append(tipoCampo, imagemPendente.arquivo);
@@ -461,13 +431,9 @@ export default function CarrosselAnimais() {
   const salvarEdicaoSlide = async (slideId) => {
     try {
       setSalvandoEdicao(true);
-      console.log("💾 Iniciando salvamento da edição...");
-      console.log("📋 Dados originais:", dadosOriginais);
-      console.log("📋 Dados editados:", dadosEditados);
 
       // Upload das imagens pendentes primeiro
       if (imagemEntradaPendente) {
-        console.log("🖼️ Fazendo upload da imagem de entrada...");
         await uploadImagemParaServidor(
           imagemEntradaPendente,
           "imagemEntrada",
@@ -475,11 +441,9 @@ export default function CarrosselAnimais() {
         );
         URL.revokeObjectURL(imagemEntradaPendente.url);
         setImagemEntradaPendente(null);
-        console.log("✅ Upload da imagem de entrada concluído");
       }
 
       if (imagemSaidaPendente) {
-        console.log("🖼️ Fazendo upload da imagem de saída...");
         await uploadImagemParaServidor(
           imagemSaidaPendente,
           "imagemSaida",
@@ -487,7 +451,6 @@ export default function CarrosselAnimais() {
         );
         URL.revokeObjectURL(imagemSaidaPendente.url);
         setImagemSaidaPendente(null);
-        console.log("✅ Upload da imagem de saída concluído");
       }
 
       let dadosParaEnviar = {
@@ -502,23 +465,8 @@ export default function CarrosselAnimais() {
         ),
       );
 
-      console.log(
-        "📤 Dados que serão enviados para o servidor:",
-        dadosParaEnviar,
-      );
-      console.log(
-        "🌐 URL da requisição:",
-        `http://localhost:3003/animais/${dadosEditados.id}`,
-      );
-      console.log(
-        "🔍 ID do animal:",
-        dadosEditados.id,
-        "Tipo:",
-        typeof dadosEditados.id,
-      );
-
       const response = await fetch(
-        `http://localhost:3003/animais/${dadosEditados.id}`,
+        `${import.meta.env.VITE_API_URL}/animais/${dadosEditados.id}`,
         {
           method: "PUT",
           headers: {
@@ -528,16 +476,12 @@ export default function CarrosselAnimais() {
         },
       );
 
-      console.log("📡 Status da resposta:", response.status);
-      console.log("📡 Headers da resposta:", [...response.headers.entries()]);
-
       if (!response.ok) {
         let errorData;
         let errorMessage = "Erro ao salvar alterações";
 
         try {
           const responseText = await response.text();
-          console.log("📡 Resposta bruta do servidor:", responseText);
 
           if (responseText) {
             try {
@@ -564,7 +508,7 @@ export default function CarrosselAnimais() {
           status: response.status,
           statusText: response.statusText,
           errorData,
-          url: `http://localhost:3003/animais/${dadosEditados.id}`,
+          url: `${import.meta.env.VITE_API_URL}/animais/${dadosEditados.id}`,
           dadosEnviados: dadosParaEnviar,
         };
 
@@ -573,7 +517,7 @@ export default function CarrosselAnimais() {
         console.error("   Status Text:", response.statusText);
         console.error(
           "   URL:",
-          `http://localhost:3003/animais/${dadosEditados.id}`,
+          `${import.meta.env.VITE_API_URL}/animais/${dadosEditados.id}`,
         );
         console.error("   Dados enviados:", dadosParaEnviar);
         console.error("   Error Data:", errorData);
@@ -587,7 +531,7 @@ export default function CarrosselAnimais() {
           try {
             console.log("🧪 Testando se o endpoint GET funciona...");
             const testGet = await fetch(
-              `http://localhost:3003/animais/${dadosEditados.id}`,
+              `${import.meta.env.VITE_API_URL}/animais/${dadosEditados.id}`,
             );
             console.log("📡 Status do GET:", testGet.status);
             if (testGet.ok) {
@@ -605,7 +549,7 @@ export default function CarrosselAnimais() {
             console.log("📤 Dados para PATCH:", dadosMinimos);
 
             const responsePatch = await fetch(
-              `http://localhost:3003/animais/${dadosEditados.id}`,
+              `${import.meta.env.VITE_API_URL}/animais/${dadosEditados.id}`,
               {
                 method: "PATCH",
                 headers: {
@@ -630,7 +574,6 @@ export default function CarrosselAnimais() {
               setDadosOriginais(null);
               setExistemAlteracoes(false);
 
-              console.log("✅ Edição salva com sucesso usando PATCH!");
               return; // Sai da função
             } else {
               const patchErrorText = await responsePatch.text();
@@ -646,7 +589,7 @@ export default function CarrosselAnimais() {
             const dadosMinimos = { nome: dadosEditados.nome };
 
             const responseAlt = await fetch(
-              `http://localhost:3003/animal/${dadosEditados.id}`,
+              `${import.meta.env.VITE_API_URL}/animal/${dadosEditados.id}`,
               {
                 method: "PUT",
                 headers: {
@@ -715,7 +658,6 @@ export default function CarrosselAnimais() {
     const mostrarSaida = mostrarSaidaPorSlide[slide.id] || false;
 
     if (editandoSlide === slide.id) {
-      // Se está editando, verifica se há imagem pendente
       if (tipoImagem === "entrada" && imagemEntradaPendente) {
         return imagemEntradaPendente.url;
       }
@@ -724,21 +666,25 @@ export default function CarrosselAnimais() {
       }
     }
 
-    // Retorna a imagem baseada no estado de mostrarSaida
     if (mostrarSaida && slide.animal.imagemSaida) {
-      return `http://localhost:3003/uploads/${slide.animal.imagemSaida}`;
-    } else if (!mostrarSaida && slide.animal.imagemEntrada) {
-      return `http://localhost:3003/uploads/${slide.animal.imagemEntrada}`;
+      return `${import.meta.env.VITE_API_URL}/uploads/${slide.animal.imagemSaida}`;
     }
 
-    return "/placeholder-image.jpg";
+    if (!mostrarSaida && slide.animal.imagemEntrada) {
+      return `${import.meta.env.VITE_API_URL}/uploads/${slide.animal.imagemEntrada}`;
+    }
+
+    return `${import.meta.env.BASE_URL}paraErros/semImagem.png`;
   };
 
   if (carregando || carregandoCarrossel) {
     return (
       <div className={styles.fundoCarrossel}>
         <div className={styles.carregando}>
-          <img src="/carregando.svg" alt="Carregando" />
+          <img
+            src={`${import.meta.env.BASE_URL}paraErros/carregando.svg`}
+            alt="Carregando"
+          />
           <p>Carregando...</p>
         </div>
       </div>
@@ -791,13 +737,12 @@ export default function CarrosselAnimais() {
       >
         {/*SLIDE DO FORMULÁRIO*/}
         <div className={styles.slideFormulario}>
-          {/* BOTÃO TROCAR DADOS DO FORMULÁRIO (REINTRODUZIDO) */}
           <div
             className={styles.divBotaoTrocarDados}
             onClick={alternarDadosFormulario}
           >
             <img
-              src="/pagConfiguracoes/trocarDados.png"
+              src={`${import.meta.env.BASE_URL}pagConfiguracoes/trocarDados.png`}
               alt="Trocar dados"
               style={{
                 cursor: animalSelecionado ? "pointer" : "default",
@@ -819,7 +764,7 @@ export default function CarrosselAnimais() {
               ) : (
                 <img
                   className={styles.imagemAnimal}
-                  src={`http://localhost:3003/uploads/${
+                  src={`${import.meta.env.VITE_API_URL}/uploads/${
                     mostrarSaidaFormulario
                       ? animalSelecionado.imagemSaida
                       : animalSelecionado.imagemEntrada
@@ -828,7 +773,7 @@ export default function CarrosselAnimais() {
                     animalSelecionado.nome
                   }`}
                   onError={(e) => {
-                    e.target.src = "/placeholder-image.jpg";
+                    e.target.src = `${import.meta.env.BASE_URL}paraErros/semImagem.png`;
                     e.target.onerror = null;
                   }}
                 />
@@ -956,7 +901,7 @@ export default function CarrosselAnimais() {
                   }}
                 >
                   <img
-                    src="/pagConfiguracoes/trocarDados.png"
+                    src={`${import.meta.env.BASE_URL}pagConfiguracoes/trocarDados.png`}
                     alt="Trocar dados"
                     style={{
                       transform: mostrarSaida
@@ -978,7 +923,7 @@ export default function CarrosselAnimais() {
                         )}
                         alt={`${mostrarSaida ? "Depois" : "Antes"} - ${slide.animal.nome}`}
                         onError={(e) => {
-                          e.target.src = "/placeholder-image.jpg";
+                          e.target.src = `${import.meta.env.BASE_URL}paraErros/semImagem.png`;
                           e.target.onerror = null;
                         }}
                       />
@@ -998,7 +943,7 @@ export default function CarrosselAnimais() {
                             }}
                           >
                             <img
-                              src="/pagVerMais/galeria.png"
+                              src={`${import.meta.env.BASE_URL}pagVerMais/galeria.png`}
                               alt="Alterar imagem"
                               className={styles.iconeOverlay}
                             />

@@ -113,7 +113,7 @@ export default function Denuncie() {
           <div className={styles.painel}>
             <div className={styles.card}>
               <div className={styles.divImagem}>
-                <img src="/pagDenuncias/policial.png" />
+                <img src={`${import.meta.env.BASE_URL}pagDenuncias/policial.png`} />
               </div>
               <h1>Delegacia virtual</h1>
               <p>
@@ -147,7 +147,7 @@ export default function Denuncie() {
             </div>
             <div className={styles.card}>
               <div className={styles.divImagem}>
-                <img src="/pagDenuncias/binoculo.png" />
+                <img src={`${import.meta.env.BASE_URL}pagDenuncias/binoculo.png`} />
               </div>
               <h1>Ao presenciar</h1>
               <p>
@@ -160,7 +160,7 @@ export default function Denuncie() {
             </div>
             <div className={styles.card}>
               <div className={styles.divImagem}>
-                <img src="/pagDenuncias/atendente.png" />
+                <img src={`${import.meta.env.BASE_URL}pagDenuncias/atendente.png`} />
               </div>
               <h1>A quem ligar?</h1>
               <p>

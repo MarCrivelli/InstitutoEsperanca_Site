@@ -9,19 +9,19 @@ export default function HeaderVisitantes({ tipo = "padrao" }) {
   // Configurações para cada tipo de header
   const tiposConfig = {
     padrao: {
-      logoSrc: "/logos/logoBranca.png",
+      logoSrc: `${import.meta.env.BASE_URL}logos/logoBranca.png`,
       headerClass: styles.headerPadrao,
       linksClass: styles.linksPadrao,
       hamburguerClass: styles.hamburguerPadrao,
     },
     linkPreto: {
-      logoSrc: "/logos/logoPreta.png",
+      logoSrc: `${import.meta.env.BASE_URL}logos/logoPreta.png`,
       headerClass: styles.headerLinkPreto,
       linksClass: styles.linksPreto,
       hamburguerClass: styles.hamburguerPreto,
     },
     modoDark: {
-      logoSrc: "/logos/logoBranca.png",
+      logoSrc: `${import.meta.env.BASE_URL}logos/logoBranca.png`,
       headerClass: styles.headerModoDark,
       linksClass: styles.linksModoDark,
       hamburguerClass: styles.hamburguerModoDark,

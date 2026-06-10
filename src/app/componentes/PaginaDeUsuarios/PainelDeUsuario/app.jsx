@@ -417,7 +417,7 @@ export default function PainelUsuario({
         >
           <img
             className={styles.iconeLog}
-            src="/pagAutenticacao/Google.png"
+            src={`${import.meta.env.BASE_URL}pagAutenticacao/Google.png`}
             alt="Google"
           />
           <label className={styles.textoBotaoLog}>Conectado</label>
@@ -430,7 +430,7 @@ export default function PainelUsuario({
         <button className={styles.botaoDadoGoogle} disabled>
           <img
             className={styles.iconeLog}
-            src="/pagAutenticacao/Google.png"
+            src={`${import.meta.env.BASE_URL}pagAutenticacao/Google.png`}
             alt="Google"
           />
           <label className={styles.textoBotaoLog}>Conectando...</label>
@@ -443,7 +443,7 @@ export default function PainelUsuario({
         <button className={styles.botaoDadoGoogle} disabled>
           <img
             className={styles.iconeLog}
-            src="/pagAutenticacao/Google.png"
+            src={`${import.meta.env.BASE_URL}pagAutenticacao/Google.png`}
             alt="Google"
           />
           <label className={styles.textoBotaoLog}>Carregando Google...</label>
@@ -468,7 +468,7 @@ export default function PainelUsuario({
         <div className={styles.espacamentoDado}>
           <img
             className={styles.iconeUsuario}
-            src={usuarioLogado.foto || "/user.png"}
+            src={usuarioLogado.foto || `${import.meta.env.BASE_URL}user.png`}
             alt="Avatar do usuário"
           />
         </div>

@@ -114,7 +114,7 @@ export default function Configuracoes() {
                 <h1 className={styles.textoDeslogue}>Deslogar</h1>
                 <img
                   className={styles.iconeSair}
-                  src="/pagConfiguracoes/iconeSair.png"
+                  src={`${import.meta.env.BASE_URL}pagConfiguracoes/iconeSair.png`}
                   alt="Ícone de logout"
                 />
               </div>
@@ -122,7 +122,7 @@ export default function Configuracoes() {
             <div className={styles.alinharInfoUsuario}>
               <img
                 className={styles.iconeUsuario}
-                src={usuarioLogado?.foto || "/user.png"}
+                src={usuarioLogado?.foto || `${import.meta.env.BASE_URL}user.png`}
                 alt="Avatar do usuário"
               />
               <h1 className={styles.nomeUsuario}>

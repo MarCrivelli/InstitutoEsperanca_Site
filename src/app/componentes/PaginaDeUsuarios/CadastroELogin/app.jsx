@@ -95,7 +95,7 @@ export default function CadastroELogin({ onLoginSucesso }) {
     setCarregando(true);
 
     try {
-      const urlApi = "http://localhost:3003";
+      const urlApi = `${import.meta.env.BASE_URL}`;
 
       const resposta = await fetch(`${urlApi}/login-google`, {
         method: "POST",
@@ -172,7 +172,7 @@ export default function CadastroELogin({ onLoginSucesso }) {
     setCarregando(true);
 
     try {
-      const urlApi = "http://localhost:3003";
+      const urlApi = `${import.meta.env.BASE_URL}`;
 
       const resposta = await fetch(`${urlApi}/cadastro`, {
         method: "POST",
@@ -219,7 +219,7 @@ export default function CadastroELogin({ onLoginSucesso }) {
     setCarregando(true);
 
     try {
-      const urlApi = "http://localhost:3003";
+      const urlApi = `${import.meta.env.BASE_URL}`;
 
       const resposta = await fetch(`${urlApi}/login`, {
         method: "POST",

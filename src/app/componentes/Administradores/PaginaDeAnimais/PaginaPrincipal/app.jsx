@@ -143,14 +143,14 @@ export default function FichasDeAnimais() {
           className={styles.botaoAcao}
           onClick={() => setMostrarFiltros(true)}
         >
-          <img src="/pagFichasDAnimais/filtro.png" alt="Filtrar" />
+          <img src={`${import.meta.env.BASE_URL}pagFichasDAnimais/filtro.png`} alt="Filtrar" />
         </button>
 
         <button
           className={styles.botaoAcao}
           onClick={() => setMostrarCadastro(true)}
         >
-          <img src="/pagFichasDAnimais/addAnimal.png" alt="Adicionar animal" />
+          <img src={`${import.meta.env.BASE_URL}pagFichasDAnimais/addAnimal.png`} alt="Adicionar animal" />
         </button>
       </div>
 
@@ -212,7 +212,7 @@ export default function FichasDeAnimais() {
         <div className={styles.painel}>
           {carregando ? (
             <div className={styles.loading}>
-              <img src="/carregando.svg" alt="Carregando" />
+              <img src={`${import.meta.env.BASE_URL}paraErros/carregando.svg`} alt="Carregando" />
               <p>Carregando...</p>
             </div>
           ) : erro ? (

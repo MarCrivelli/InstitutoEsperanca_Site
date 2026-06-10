@@ -110,7 +110,7 @@ export default function CarrosselDeDoadores() {
                   />
                 ) : (
                   <div className={styles.iconePadrao}>
-                    <img src="/pagConfiguracoes/adicionarImagem.png"></img>
+                    <img src={`${import.meta.env.BASE_URL}pagConfiguracoes/adicionarImagem.png`}></img>
                   </div>
                 )}
               </label>
@@ -153,12 +153,12 @@ export default function CarrosselDeDoadores() {
             <div key={`doador-${doador.id}`} className={styles.itemCarrossel}>
               <div className={styles.containerImagem}>
                 <img
-                  src={`http://localhost:3003/uploads/${doador.imagem}`}
+                  src={`${import.meta.env.VITE_API_URL}/uploads/${doador.imagem}`}
                   alt={doador.nome}
                   className={styles.fotoDoador}
                   onError={(e) => {
                     e.target.onerror = null;
-                    e.target.src = "/imagem-padrao-doador.jpg";
+                    e.target.src = "paraErros/user.png";
                   }}
                 />
               </div>

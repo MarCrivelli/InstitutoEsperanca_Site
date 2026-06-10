@@ -22,7 +22,7 @@ export default function CarrosselDeAnimaisVisitantes({ ehMobile }) {
       setCarregando(true);
       setErro("");
       
-      const response = await fetch("http://localhost:3003/carrossel/animais");
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/carrossel/animais`);
       
       if (!response.ok) {
         throw new Error(`Erro HTTP: ${response.status}`);
@@ -39,11 +39,11 @@ export default function CarrosselDeAnimaisVisitantes({ ehMobile }) {
               id: item.animal.id,
               nome: item.animal.nome || "Animal sem nome",
               antes: item.animal.imagemEntrada 
-                ? `http://localhost:3003/uploads/${item.animal.imagemEntrada}`
-                : "/placeholder-image.jpg",
+                ? `${import.meta.env.VITE_API_URL}/uploads/${item.animal.imagemEntrada}`
+                : "paraErros/semImagem.png",
               depois: item.animal.imagemSaida 
-                ? `http://localhost:3003/uploads/${item.animal.imagemSaida}`
-                : "/placeholder-image.jpg",
+                ? `${import.meta.env.VITE_API_URL}/uploads/${item.animal.imagemSaida}`
+                : "paraErros/semImagem.png",
               descricaoAntes: item.animal.descricaoEntrada || "Sem descrição de entrada",
               descricaoDepois: item.descricaoSaida || item.animal.descricaoSaida || "Sem descrição de saída"
             }))
@@ -81,7 +81,7 @@ export default function CarrosselDeAnimaisVisitantes({ ehMobile }) {
     return (
       <div className={styles.containerCarregamento}>
         <img 
-          src="/carregando.svg" 
+          src="paraErros/carregando.svg" 
           alt="Carregando animais..." 
           className={styles.iconeCarregamento}
         />
@@ -171,7 +171,7 @@ export default function CarrosselDeAnimaisVisitantes({ ehMobile }) {
                 }`}
                 className={styles.imagemAnimal}
                 onError={(e) => {
-                  e.target.src = "/placeholder-image.jpg";
+                  e.target.src = "paraErros/semImagem.png";
                   e.target.onerror = null;
                 }}
               />

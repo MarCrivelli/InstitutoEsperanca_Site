@@ -54,7 +54,7 @@ export default function CadastroDeAnimais({ onAnimalCadastrado, onClose }) {
     }
 
     try {
-      const resposta = await fetch("http://localhost:3003/animais", {
+      const resposta = await fetch(`${import.meta.env.BASE_URL}/animais`, {
         method: "POST",
         body: formData,
       });
