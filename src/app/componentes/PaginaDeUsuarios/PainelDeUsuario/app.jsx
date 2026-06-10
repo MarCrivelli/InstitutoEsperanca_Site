@@ -149,7 +149,7 @@ export default function PainelUsuario({
   //================ Função para processar login do Google ================//
   const processarLoginGoogle = async (dadosGoogle, token) => {
     try {
-      const urlApi = "http://localhost:3003";
+      const urlApi = `${import.meta.env.VITE_URL}`;
       const tokenAuth = obterToken();
 
       if (!tokenAuth) {
@@ -253,7 +253,7 @@ export default function PainelUsuario({
     const novoEstado = !emailAtivado;
 
     try {
-      const urlApi = "http://localhost:3003";
+      const urlApi = `${import.meta.env.VITE_URL}`;
       const token = obterToken();
 
       if (!token) {
@@ -301,7 +301,7 @@ export default function PainelUsuario({
     const novoEstado = !whatsappAtivado;
 
     try {
-      const urlApi = "http://localhost:3003";
+      const urlApi = `${import.meta.env.VITE_URL}`;
       const token = obterToken();
 
       if (!token) {
@@ -372,7 +372,7 @@ export default function PainelUsuario({
     setCarregandoExclusao(true);
 
     try {
-      const urlApi = "http://localhost:3003";
+      const urlApi = `${import.meta.env.VITE_URL}`;
       const token = obterToken();
 
       if (!token) {
@@ -417,7 +417,7 @@ export default function PainelUsuario({
         >
           <img
             className={styles.iconeLog}
-            src={`${import.meta.env.BASE_URL}pagAutenticacao/Google.png`}
+            src={`${import.meta.env.VITE_URL}pagAutenticacao/Google.png`}
             alt="Google"
           />
           <label className={styles.textoBotaoLog}>Conectado</label>
@@ -430,7 +430,7 @@ export default function PainelUsuario({
         <button className={styles.botaoDadoGoogle} disabled>
           <img
             className={styles.iconeLog}
-            src={`${import.meta.env.BASE_URL}pagAutenticacao/Google.png`}
+            src={`${import.meta.env.VITE_URL}pagAutenticacao/Google.png`}
             alt="Google"
           />
           <label className={styles.textoBotaoLog}>Conectando...</label>
@@ -468,7 +468,7 @@ export default function PainelUsuario({
         <div className={styles.espacamentoDado}>
           <img
             className={styles.iconeUsuario}
-            src={usuarioLogado.foto || `${import.meta.env.BASE_URL}user.png`}
+            src={usuarioLogado.foto || `${import.meta.env.BASE_URL}paraErros/user.png`}
             alt="Avatar do usuário"
           />
         </div>
