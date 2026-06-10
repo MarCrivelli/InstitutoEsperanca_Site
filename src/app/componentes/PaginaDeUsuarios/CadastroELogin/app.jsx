@@ -95,7 +95,7 @@ export default function CadastroELogin({ onLoginSucesso }) {
     setCarregando(true);
 
     try {
-      const urlApi = `${import.meta.env.BASE_URL}`;
+      const urlApi = `${import.meta.env.VITE_API_URL}`;
 
       const resposta = await fetch(`${urlApi}/login-google`, {
         method: "POST",
@@ -172,7 +172,7 @@ export default function CadastroELogin({ onLoginSucesso }) {
     setCarregando(true);
 
     try {
-      const urlApi = `${import.meta.env.BASE_URL}`;
+      const urlApi = `${import.meta.env.VITE_API_URL}`;
 
       const resposta = await fetch(`${urlApi}/cadastro`, {
         method: "POST",
@@ -219,7 +219,7 @@ export default function CadastroELogin({ onLoginSucesso }) {
     setCarregando(true);
 
     try {
-      const urlApi = `${import.meta.env.BASE_URL}`;
+      const urlApi = `${import.meta.env.VITE_API_URL}`;
 
       const resposta = await fetch(`${urlApi}/login`, {
         method: "POST",

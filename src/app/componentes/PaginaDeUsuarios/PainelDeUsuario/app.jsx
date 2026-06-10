@@ -149,7 +149,7 @@ export default function PainelUsuario({
   //================ Função para processar login do Google ================//
   const processarLoginGoogle = async (dadosGoogle, token) => {
     try {
-      const urlApi = `${import.meta.env.VITE_URL}`;
+      const urlApi = `${import.meta.env.VITE_API_URL}`;
       const tokenAuth = obterToken();
 
       if (!tokenAuth) {
@@ -253,7 +253,7 @@ export default function PainelUsuario({
     const novoEstado = !emailAtivado;
 
     try {
-      const urlApi = `${import.meta.env.VITE_URL}`;
+      const urlApi = `${import.meta.env.VITE_API_URL}`;
       const token = obterToken();
 
       if (!token) {
@@ -301,7 +301,7 @@ export default function PainelUsuario({
     const novoEstado = !whatsappAtivado;
 
     try {
-      const urlApi = `${import.meta.env.VITE_URL}`;
+      const urlApi = `${import.meta.env.VITE_API_URL}`;
       const token = obterToken();
 
       if (!token) {
@@ -372,7 +372,7 @@ export default function PainelUsuario({
     setCarregandoExclusao(true);
 
     try {
-      const urlApi = `${import.meta.env.VITE_URL}`;
+      const urlApi = `${import.meta.env.VITE_API_URL}`;
       const token = obterToken();
 
       if (!token) {
@@ -417,7 +417,7 @@ export default function PainelUsuario({
         >
           <img
             className={styles.iconeLog}
-            src={`${import.meta.env.VITE_URL}pagAutenticacao/Google.png`}
+            src={`${import.meta.env.VITE_API_URL}pagAutenticacao/Google.png`}
             alt="Google"
           />
           <label className={styles.textoBotaoLog}>Conectado</label>
@@ -430,7 +430,7 @@ export default function PainelUsuario({
         <button className={styles.botaoDadoGoogle} disabled>
           <img
             className={styles.iconeLog}
-            src={`${import.meta.env.VITE_URL}pagAutenticacao/Google.png`}
+            src={`${import.meta.env.VITE_API_URL}pagAutenticacao/Google.png`}
             alt="Google"
           />
           <label className={styles.textoBotaoLog}>Conectando...</label>
